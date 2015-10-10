@@ -3,6 +3,7 @@ package com.algohub.servlets;
 import com.algohub.core.*;
 import com.algohub.shared.AlgosEnum;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,11 @@ public class AlgoManagementServlet extends HttpServlet {
                 break;
         }
 
-        response.getWriter().println(res);
+        //response.getWriter().println(res);
+        request.setAttribute("algoName", algoName);
+        request.setAttribute("algoResult", res);
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/results.jsp");
+        dispatcher.forward(request, response);
     }
 
     /*
